@@ -1,8 +1,12 @@
 import { CSS, render } from "https://deno.land/x/gfm/mod.ts";
 import "https://esm.sh/prismjs@1.29.0/components/prism-typescript?no-check";
-import "https://esm.sh/prismjs@1.29.0/components/prism-python?no-check";
+
+import regions from "./regions.ts";
+
 
 export async function buildPortal() {
+  const regionCode = Deno.env.get("DENO_REGION") || "localhost";
+	const regionText = regions[regionCode] ? regions[regionCode] : regionCode;
   const CODE = render(await Deno.readTextFile("./code.md"));
   const html = `
     <!DOCTYPE html>
@@ -22,6 +26,11 @@ export async function buildPortal() {
           <div class="px-6 lg:px-0 lg:pt-4">
             <div class="mx-auto max-w-2xl">
               <div class="max-w-lg">
+              <div class="mb-2">
+                <a href="#" class="inline-flex space-x-6">
+                  <span class="rounded-full bg-indigo-600/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-600 ring-1 ring-inset ring-indigo-600/10">Service deployed in ${regionText}</span>
+                </a>
+              </div>
                 <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">OpenAI Proxy</h1>
                 <p class="mt-6 text-lg leading-8 text-gray-600">Unrestricted Access to OpenAI/ChatGPT - Your Key to Limitless Creativity!</p>
                 <div class="mt-10 flex items-center gap-x-6">
@@ -46,6 +55,7 @@ export async function buildPortal() {
                       </div>
                         <div data-color-mode="dark" data-dark-theme="dark" class="markdown-body">
                           ${CODE}
+                          ${regionText}
                         </div>
                     </div>
                   </div>
