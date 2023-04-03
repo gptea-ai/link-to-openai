@@ -55,7 +55,6 @@ export async function buildPortal() {
                       </div>
                         <div data-color-mode="dark" data-dark-theme="dark" class="markdown-body">
                           ${CODE}
-                          ${regionText}
                         </div>
                     </div>
                   </div>
