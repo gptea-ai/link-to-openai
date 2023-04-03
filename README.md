@@ -22,13 +22,14 @@ Using OpenAI/ChatGPT official Python package:
 + openai.api_base = "https://linkai.deno.dev/v1"
 ```
 
-## Local Dev
+## Getting Started With Local Development
 
 ```bash
 deno run --allow-net --allow-read --allow-env --watch main.ts
 ```
 
-## Deployment
+## Self-Hosting
+
 Click this [link][1] to quickly deploy to Deno Deploy with one click.
 
 [1]: https://dash.deno.com/new?url=https://raw.githubusercontent.com/gptea-ai/link-to-openai/main/main.ts
